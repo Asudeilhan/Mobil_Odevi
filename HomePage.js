@@ -1,90 +1,131 @@
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import React from 'react';
+import { View, Text, StyleSheet, Image, ScrollView,} from 'react-native';
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>İmmünoglobulin A</Text>
-        <Image
-          source={require('../../assets/images/igA.jpg')}
-          style={styles.image}
-        />
-        <Text style={styles.text}>
-          IgA antikorları adıyla da bilinen immünoglobulin A antikorları, akciğer, sinüs, mide ve bağırsakların mukoza zarlarında bulunan antikorlardır. Ayrıca bu zarların ürettiği tükürük ve gözyaşı gibi sıvılarda ve kanda da ilgili antikorlar bulunur.
+    <ScrollView contentContainerStyle={styles.container}>
+      <Image
+       source={require('../../assets/images/kantupleri.webp')}
+        style={styles.banner}
+      />
+      <Text style={styles.title}>LabConnect</Text>
+      <Text style={styles.subtitle}>
+      Kan testlerinizi analiz edin ve sonuçlarınızı yönergelere uygun olarak değerlendirin.
+      </Text>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Hizmetlerimiz</Text>
+         <View style={styles.cardsContainer}>
+         <View style={styles.card}>
+          <Image 
+            source={require('../../assets/images/analiz.webp')} // Kan testi ile ilgili görsel URL'si
+            style={styles.cardImage}
+          />
+           <Text style={styles.cardTitle}>Test Sonuçları</Text>
+           <Text style={styles.cardDescription}>
+           Kan değerlerinizi görüntüleyin ve analiz edin.
+           </Text>
+           </View>
+
+          <View style={styles.card}>
+           <Image
+             source={require('../../assets/images/klavuz.webp')} // Klavuzlarla ilgili görsel URL'si
+             style={styles.cardImage}
+            />
+             <Text style={styles.cardTitle}>Klavuzlar</Text>
+             <Text style={styles.cardDescription}>
+             Sonuçlar yönergelere uygun olarak değerlendirildi.</Text>
+          </View>
+
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Hakkımızda</Text>
+        <Text style={styles.sectionDescription}>
+        LabConnect, laboratuvar sonuçlarını daha kolay takip edebilmeniz için geliştirildi. Kullanıcı dostu bir deneyim sunar ve sağlık analizinizi kolaylaştırır.
         </Text>
       </View>
 
-      <View style={styles.card}>
-        <Text style={styles.title}>İmmünoglobulin G</Text>
-        <Image
-          source={require('../../assets/images/IgG.jpg')}
-          style={styles.image}
-        />
-        <Text style={styles.text}>
-          IgG antikorları olan immünoglobulin G, kanda ve diğer vücut sıvılarında en yaygın olarak bulunan antikor türüdür. Bu antikorlar, daha önce vücuttaki mikropları hatırlayıp reaksiyon göstererek kişiyi enfeksiyona karşı korur ve bağışıklık sistemini uzun süre güçlü tutma görevi üstlenir.
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.title}>İmmünoglobulin M</Text>
-        <Image
-          source={require('../../assets/images/igM.png')}
-          style={styles.image}
-        />
-        <Text style={styles.text}>
-          IgM adıyla ifade edilen immünoglobulin M antikorları, vücuda ilk kez yeni bir bakteri veya mikrop girdiğinde ve kişi enfekte olduğunda üretilir.
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.text}>
-          Yukarıda yer alan antikor türleri, vücudun enfeksiyonlara karşı koruyucu kalkanı olarak bilinir. Vücudunuz bir bakteri veya mikrobu algıladığında özellikle IgM değeri kısa bir süreliğine yükselir.
-        </Text>
-      </View>
     </ScrollView>
   );
 };
 
+export default HomePage;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f9f9f9', // Soft light gray background
-    paddingTop: 10,
+    flexGrow: 1,
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+    alignItems: 'center',
   },
-  card: {
-    backgroundColor: 'white', // White background for each card
-    borderRadius: 15, // Soft corners for cards
-    marginBottom: 20, // Space between cards
-    padding: 20, // Padding inside the card
-    shadowColor: '#000', // Soft shadow for cards
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 5, // Android shadow
+  banner: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    borderRadius: 10,
+    marginBottom: 20,
   },
   title: {
-    fontSize: 22, // Larger title for more emphasis
-    fontWeight: '700',
-    color: '#2e2e2e',
-    marginBottom: 12,
-    textTransform: 'uppercase', // Make the title bold and capitalized
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#d01a1a',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#34495e',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  section: {
+    width: '100%',
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#d01a1a',
+    marginBottom: 10,
+  },
+  sectionDescription: {
+    fontSize: 16,
+    color: '#7f8c8d',
     textAlign: 'center',
   },
-  text: {
-    fontSize: 16,
-    color: '#555', // Soft dark text color for readability
-    lineHeight: 24,
-    textAlign: 'justify',
+  cardsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  image: {
-    width: '100%',
-    height: 220, // Higher image for better visual impact
-    borderRadius: 12, // Soft rounded corners
-    marginBottom: 15, // Space between image and text
-    borderWidth: 1, // Thin border around image
-    borderColor: '#eee', // Light border color
+  card: {
+    width: '45%',
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  cardImage: {
+    width: 80,
+    height: 80,
+    marginBottom: 10,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#7f8c8d',
+    textAlign: 'center',
   },
 });
-
-export default HomePage;
